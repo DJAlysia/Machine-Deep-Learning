@@ -1,4 +1,4 @@
-# 1단계
+#1단계
 import requests
 import re
 
@@ -26,17 +26,18 @@ mat = re.search(pattern1, html_subject)
 h4_subject = mat.group()
 print(h4_subject)
 pattern2 = '<.+?>'
-subject = re.sub(pattern2, '', h4_subject)
+subject =re.sub(pattern2, '', h4_subject)
 print(subject)
 
-
-
-
-
+start_list = html_data.find('<div class="isKeyword">')
+end_list = html_data.find('<form id="frmKeyword"')
+# print(start_list, '~', end_list)
+html_list = html_data[start_list:end_list]
+# print(html_list)
+html_li_item = html_list.split('<li>')
 Length = len(html_li_item)
-pattern3 = '<span class ="num_rank".*/span>'
-pattern4 = '<span class ="txt_rank".*/span>'
-
+pattern3 = '<span class="num_rank".*/span>'
+pattern4 = '<span class="txt_rank".*/span>'
 for i in range(1, Length):
     mat = re.search(pattern3, html_li_item[i])
     mat_txt = re.search(pattern4, html_li_item[i])
@@ -44,14 +45,4 @@ for i in range(1, Length):
     txt = mat_txt.group()
     num = re.sub(pattern2, '', num)
     txt = re.sub(pattern2, '', txt)
-    print(num, '위', txt)
-
-    
-
-
-
-
-
-
-
-
+    print(num,'위 ', txt)
