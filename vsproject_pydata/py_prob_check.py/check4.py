@@ -12,3 +12,4 @@ for row in data[1:]:
     close_price = row[3]
     if close_price > 1500:
         print(close_price)
+        
